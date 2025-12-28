@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milestone Project Procurement Nig. Ltd</title>
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0b4f8a;
+      --secondary: #c82333;
+      --light: #f5f7fa;
+      --dark: #1c1c1c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b4f8a, #1e88e5);
+      padding: 5px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      color: #ffffff;
+      font-size: 2rem;
+    }
+
+    header h2 {
+      color: #ffe082;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-style: italic;
+      color: #f1f1f1;
+    }
+
+    .badge {
+      margin: 20px auto 10px;
+      display: inline-block;
+      padding: 10px 18px;
+      background: #ffffff;
+      border-radius: 25px;
+      font-weight: bold;
+      color: #0b4f8a;
+    }
+
+    .cta {
+      margin-top: 15px;
+    }
+
+    .cta a {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .cta a:hover {
+      background: #1ebe5d;
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 30px 15px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      background: var(--primary);
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ddd;
+      font-size: 0.95rem;
+    }
+
+    .card ul li::before {
+      content: "• ";
+      color: var(--secondary);
+      font-weight: bold;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+      padding: 50px 15px;
+      margin: 30px auto;
+      max-width: 1100px;
+      border-radius: 15px;
+    }
+
+    .pricing-section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .pricing-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 0 auto 30px;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+    }
+
+    .pricing-header {
+      background: linear-gradient(135deg, var(--primary), #1565c0);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    .pricing-header i {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .pricing-header h3 {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+
+    .pricing-body {
+      padding: 20px;
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .price-item:last-child {
+      border-bottom: none;
+    }
+
+    .service-name {
+      font-size: 0.95rem;
+      color: #333;
+      flex: 1;
+    }
+
+    .service-price {
+      font-weight: bold;
+      color: var(--secondary);
+      font-size: 0.9rem;
+      white-space: nowrap;
+      margin-left: 15px;
+    }
+
+    .pricing-note {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .pricing-note i {
+      color: var(--primary);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .pricing-note p {
+      margin: 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+/* Section */
+.service-slider {
+  padding: 50px 15px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.service-slider h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Slider */
+.slider-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  gap: 25px;
+  animation: scroll 30s linear infinite;
+}
+
+/* Pause on hover */
+.slider-container:hover .slider-track {
+  animation-play-state: paused;
+}
+
+/* Images */
+.slider-track img {
+  width: 360px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 14px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover effect */
+.slider-track a:hover img {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+}
+
+/* Infinite movement */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .slider-track img {
+    width: 260px;
+    height: 170px;
+  }
+}
+    /* Contact Section */
+    .contact {
+      background: var(--primary);
+      color: white;
+      padding: 30px 15px;
+      margin-top: 30px;
+    }
+
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .contact-card {
+      background: white;
+      color: var(--dark);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .contact-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .contact-card h3 i {
+      margin-right: 8px;
+      color: var(--secondary);
+    }
+
+    .contact-card a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+    }
+footer {
+      background: #0a2f4f;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header h2 {
+        font-size: 1rem;
+      }
+
+      .cta a {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+
+      .card h3 {
+        font-size: 0.95rem;
+      }
+
+      .card ul li {
+        align-items: flex-start;
+      }
+
+      .contact-card h3 {
+        font-size: 1rem;
+      }
+
+      .contact-card a {
+        font-size: 0.95rem;
+      }
+
+      .pricing-section h2 {
+        font-size: 1.6rem;
+      }
+
+      .pricing-subtitle {
+        font-size: 1rem;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      .service-price {
+        margin-left: 0;
+      }
+
+      .pricing-note {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MILESTONE PROJECT</h1>
+    <h2>PROCUREMENT NIG. LTD. (RC: 7351446)</h2>
+    <p>Cleaning With Care, Serving With A Smile</p>
+    <div class="badge">24 / 7 Service • Open Everyday</div>
+    <div class="cta">
+      <a href="https://wa.me/2348163225680?text=Hello%20Milestone%20Project%2C%20I%20want%20to%20request%20a%20cleaning%20service" target="_blank" rel="noopener noreferrer">Get a Quote on WhatsApp</a>
+    </div>
+  </header>
+
+  <section>
+    <h2 style="text-align:center; margin-bottom:20px;">Our Services</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Residential Cleaning</h3>
+        <ul>
+          <li>House Cleaning</li>
+          <li>Apartment Cleaning</li>
+          <li>Move-in / Move-out Cleaning</li>
+          <li>Deep Cleaning</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Commercial Cleaning</h3>
+        <ul>
+          <li>Office Cleaning</li>
+          <li>Janitorial Cleaning</li>
+          <li>Event Cleaning</li>
+          <li>Bank Cleaning</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Specialized Cleaning</h3>
+        <ul>
+          <li>Carpet Cleaning</li>
+          <li>Window Cleaning</li>
+          <li>Post‑Construction Cleaning</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Other Services</h3>
+        <ul>
+          <li>Upholstery Cleaning</li>
+          <li>Fumigation & Pest Control</li>
+          <li>Regular Cleaning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section">
+    <h2>Our Pricing Guide</h2>
+    <p class="pricing-subtitle">Transparent pricing for quality cleaning services</p>
+    
+    <div class="pricing-grid">
+      
+      <!-- Residential Cleaning -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <i class="fas fa-home"></i>
+          <h3>Residential Cleaning</h3>
+        </div>
+        <div class="pricing-body">
+          <div class="price-item">
+            <span class="service-name">Room & Parlour Self</span>
+            <span class="service-price">₦30,000 - ₦40,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">2 Bedroom Flat</span>
+            <span class="service-price">₦60,000 - ₦80,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">3 Bedroom Flat</span>
+            <span class="service-price">₦90,000 - ₦120,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">4 Bedroom Flat</span>
+            <span class="service-price">₦120,000 - ₦160,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Duplex</span>
+            <span class="service-price">₦180,000 - ₦550,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Office Cleaning -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <i class="fas fa-building"></i>
+          <h3>Office Cleaning</h3>
+        </div>
+        <div class="pricing-body">
+          <div class="price-item">
+            <span class="service-name">Small Office (1-5 rooms)</span>
+            <span class="service-price">₦40,000 - ₦70,000/Month</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Medium Office (6-10 rooms)</span>
+            <span class="service-price">₦50,000 - ₦80,000/Month</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Large Office (10+ rooms)</span>
+            <span class="service-price">₦80,000 - ₦150,000/Month</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post-Construction -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <i class="fas fa-hammer"></i>
+          <h3>Post-Construction</h3>
+        </div>
+        <div class="pricing-body">
+          <div class="price-item">
+            <span class="service-name">1-Bedroom Flat</span>
+            <span class="service-price">₦27,000 - ₦39,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">2-Bedroom Flat</span>
+            <span class="service-price">₦34,000 - ₦45,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">3-Bedroom Flat</span>
+            <span class="service-price">₦48,000 - ₦61,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">4-Bedroom Flat</span>
+            <span class="service-price">₦50,000 - ₦65,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">3-Bedroom Duplex</span>
+            <span class="service-price">₦120,000 - ₦250,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">4-Bedroom Duplex</span>
+            <span class="service-price">₦160,000 - ₦350,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">5-Bedroom Duplex</span>
+            <span class="service-price">₦200,000 - ₦450,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specialized Cleaning -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <i class="fas fa-star"></i>
+          <h3>Specialized Cleaning</h3>
+        </div>
+        <div class="pricing-body">
+          <div class="price-item">
+            <span class="service-name">Sofa Cleaning</span>
+            <span class="service-price">₦5,000/seat</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Curtain Cleaning</span>
+            <span class="service-price">₦1,500/meter</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Rug/Carpet Cleaning</span>
+            <span class="service-price">₦200/sqm</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Mattress Cleaning</span>
+            <span class="service-price">₦7,000 - ₦10,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Window Cleaning</span>
+            <span class="service-price">₦150 - ₦302/window</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Fumigation & Pest Control</span>
+            <span class="service-price">₦30,000 - ₦50,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Industrial Cleaning -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <i class="fas fa-industry"></i>
+          <h3>Industrial Cleaning</h3>
+        </div>
+        <div class="pricing-body">
+          <div class="price-item">
+            <span class="service-name">General Cleaning</span>
+            <span class="service-price">₦50,000 - ₦200,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Deep Cleaning</span>
+            <span class="service-price">₦100,000 - ₦500,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Specialized Cleaning</span>
+            <span class="service-price">₦200,000+</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pricing-note">
+      <i class="fas fa-info-circle"></i>
+      <p>Prices may vary based on property size, condition, and specific requirements. Contact us for a personalized quote.</p>
+    </div>
+  </section>
+<section class="service-slider">
+  <h2>Our Cleaning Services</h2>
+
+  <div class="slider-container">
+    <div class="slider-track">
+
+      <!-- Image 1 -->
+      <a href="https://wa.me/2348163225680" target="_blank">
+        <img src="images/Clean1.jpg" alt="House Cleaning">
+      </a>
+
+      <!-- Image 2 -->
+      <a href="https://wa.me/2348163225680" target="_blank">
+        <img src="images/clean2.jpg" alt="Office Cleaning">
+      </a>
+
+      <!-- Image 3 -->
+      <a href="https://wa.me/2348163225680" target="_blank">
+        <img src="images/clean3.jpg" alt="Carpet Cleaning">
+      </a>
+
+      <!-- Image 4 -->
+      <a href="https://wa.me/2348163225680" target="_blank">
+        <img src="images/clean4.jpg" alt="Post Construction Cleaning">
+      </a>
+
+      <!-- Image 5 -->
+      <a href="https://wa.me/2348163225680" target="_blank">
+        <img src="images/clean5.jpg" alt="Fumigation Service">
+      </a>
+
+         </div>
+  </div>
+</section>
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-options">
+      <div class="contact-card">
+        <h3><i class="fab fa-whatsapp"></i> WhatsApp</h3>
+        <p><a href="https://wa.me/2348163225680" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
+      </div>
+
+      <div class="contact-card">
+        <h3><i class="fas fa-envelope"></i> Email</h3>
+        <p><a href="mailto:mppnigltd@gmail.com">mppnigltd@gmail.com</a></p>
+      </div>
+
+      <div class="contact-card">
+        <h3><i class="fas fa-phone"></i> Phone</h3>
+        <p>
+          <a href="tel:+2348163225680">0816 322 5680</a><br>
+          <a href="tel:+2349048455583">0904 845 5583</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Office Address: Nana Aisha Street, Behind Millennium Event Center, Jalingo, Taraba State</p>
+    <p>&copy; 2025 Milestone Project Procurement Nig. Ltd</p>
+  </footer>
+</body>
+</html>
